@@ -1,0 +1,59 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #0d1b2a;
+  --color-slate-deep: #1b263b;
+  --color-steel: #415a77;
+  --color-mist: #778da9;
+  --color-parchment: #e0e1dd;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-parchment);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-steel);
+    color: var(--color-parchment);
+  }
+}
+
+@layer utilities {
+  .grain {
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(65, 90, 119, 0.35), transparent 45%),
+      radial-gradient(circle at 85% 0%, rgba(119, 141, 169, 0.18), transparent 40%);
+  }
+}
+
+/* Barra de scroll acorde a la paleta */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0d1b2a;
+}
+::-webkit-scrollbar-thumb {
+  background: #415a77;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #778da9;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
