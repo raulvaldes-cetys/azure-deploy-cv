@@ -75,11 +75,11 @@ y el secret `AZURE_STATIC_WEB_APPS_API_TOKEN_AGREEABLE_WAVE_03F1E0310`.
 
 Ese workflow está **modificado a mano** respecto al que genera Azure:
 
-| Cambio                                          | Por qué                                                        |
-| ----------------------------------------------- | -------------------------------------------------------------- |
-| `output_location: dist` (Azure ponía `build`)    | Vite emite en `dist/`, no en `build/`                          |
-| `skip_app_build: true` + build con pnpm          | El builder Oryx asume npm/yarn y tropieza con `pnpm-lock.yaml` |
-| `staticwebapp.config.json` vive en `public/`     | Azure lo busca dentro de `output_location`, no en la raíz      |
+| Cambio                                                | Por qué                                                        |
+| ----------------------------------------------------- | -------------------------------------------------------------- |
+| `skip_app_build: true` + build con pnpm en el runner   | El builder Oryx asume npm/yarn y tropieza con `pnpm-lock.yaml` |
+| `app_location: dist` y `output_location: ""`           | Con `skip_app_build`, `app_location` **es** la carpeta ya construida y `output_location` debe ir vacío ([docs](https://learn.microsoft.com/azure/static-web-apps/build-configuration#skip-building-front-end-app)) |
+| `staticwebapp.config.json` vive en `public/`           | Azure lo busca dentro de la carpeta desplegada, no en la raíz  |
 
 Si algún día hay que recrear el recurso desde cero, la ruta más limpia es elegir
 **Deployment source: `Other`** en el portal (así Azure no genera su propio workflow),

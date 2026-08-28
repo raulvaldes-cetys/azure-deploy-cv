@@ -47,9 +47,12 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
           ###### Repository/Build Configurations ######
-          app_location: "/" # App source code path
+          # Con skip_app_build, app_location ES la carpeta ya construida
+          # y output_location tiene que ir vacio.
+          # https://learn.microsoft.com/azure/static-web-apps/build-configuration
+          app_location: "dist" # salida de vite build
           api_location: "" # Api source code path - optional
-          output_location: "dist" # Vite genera dist/, no build/
+          output_location: "" # vacio a proposito, ver nota de arriba
           skip_app_build: true # ya construimos arriba con pnpm
           ###### End of Repository/Build Configurations ######
 
